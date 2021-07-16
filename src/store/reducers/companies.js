@@ -1,10 +1,15 @@
-import { SET_CONFIGS } from "../actions/actionTypes";
+import { LIFECYCLE } from "../../constants";
 
-function subState(state = [], action) {
-    switch (action.type) {
-        default:
-            return state;
-    }
+const initState = {
+  lifecycle: LIFECYCLE.INITIAL,
+  data: {},
+};
+
+function subState(state = initState, action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
 }
 
 export default subState;
