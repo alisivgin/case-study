@@ -7,6 +7,10 @@ const COLORS = {
   bodyBackground: white,
   totalPriceBackground: darkBlue,
   textColor: "#FFFFFF",
+  buttonColor: ligthBlue,
+  imageBorder: "#F3F0FE",
+  imageBackground: "#C4C4C4",
+  priceColor: ligthBlue,
 };
 
 export default COLORS;

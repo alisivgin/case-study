@@ -27,10 +27,11 @@ const FilterSort = styled.div`
 const Products = styled.div`
   grid-area: products;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
   grid-template-rows: repeat(auto-fill, minmax(12rem, 1fr));
-
+  grid-gap: 0.5rem;
   background-color: #fff;
+  /* align-items: center; */
 `;
 
 const Checkout = styled.div`
@@ -45,7 +46,9 @@ function App() {
       <Body>
         <FilterSort />
         <Products>
-          <Item></Item>
+          {new Array(16).fill(0).map((_) => (
+            <Item></Item>
+          ))}
         </Products>
         <Checkout />
       </Body>
