@@ -6,6 +6,11 @@ import { selectedIcon } from "../../assets";
 const Container = styled.div`
   width: 18.5rem;
   padding: 1rem;
+`;
+
+const ContainerBody = styled.div`
+  width: auto;
+  padding: 1rem;
   background-color: ${COLORS.multipleSelectBackground};
 `;
 
@@ -14,9 +19,10 @@ const Title = styled.h3`
   font-size: 13px;
 `;
 const Input = styled.input`
-  width: calc(100% - 0.6rem);
+  width: calc(100% - 1rem);
   height: 2rem;
   padding-left: 0.6rem;
+  margin-bottom: 0.6rem;
   border: 2px solid #e0e0e0;
 `;
 
@@ -60,20 +66,22 @@ export default function MultipleSelect() {
   return (
     <Container>
       <Title>Brands</Title>
-      <Input placeholder="Select" />
-      <Options>
-        <Option selected>
-          All
-          <OptionCount>(18)</OptionCount>
-        </Option>
-        <Option selected>All</Option>
-        <Option>All</Option>
-        <Option>All</Option>
-        <Option>All</Option>
-        <Option>All</Option>
-        <Option>All</Option>
-        <Option>All</Option>
-      </Options>
+      <ContainerBody>
+        <Input placeholder="Select" />
+        <Options>
+          <Option selected>
+            All
+            <OptionCount>(18)</OptionCount>
+          </Option>
+          <Option selected>All</Option>
+          <Option>All</Option>
+          <Option>All</Option>
+          <Option>All</Option>
+          <Option>All</Option>
+          <Option>All</Option>
+          <Option>All</Option>
+        </Options>
+      </ContainerBody>
     </Container>
   );
 }

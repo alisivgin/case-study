@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Item from "./components/Item";
 import MultipleSelect from "./components/MultipleSelect";
 import Header from "./components/Header";
+import Chart from "./components/Chart";
 import { COLORS } from "./constants";
 
 export const MAIN_PADDING = "2rem";
@@ -23,6 +24,9 @@ const Body = styled.div`
 `;
 const FilterSort = styled.div`
   grid-area: filter-sort;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 2rem;
   /* background-color: #000; */
 `;
 
@@ -39,7 +43,8 @@ const Products = styled.div`
 
 const Checkout = styled.div`
   grid-area: checkout;
-  background-color: #000;
+  /* background-color: #fff; */
+  /* background-color: #000; */
 `;
 
 function App() {
@@ -49,13 +54,17 @@ function App() {
       <Body>
         <FilterSort>
           <MultipleSelect />
+          <MultipleSelect />
+          <MultipleSelect />
         </FilterSort>
         <Products>
           {new Array(16).fill(0).map((_) => (
             <Item></Item>
           ))}
         </Products>
-        <Checkout />
+        <Checkout>
+          <Chart />
+        </Checkout>
       </Body>
     </Container>
   );
