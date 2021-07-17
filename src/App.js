@@ -4,6 +4,7 @@ import Item from "./components/Item";
 import MultipleSelect from "./components/MultipleSelect";
 import Header from "./components/Header";
 import Chart from "./components/Chart";
+import ItemTypes from "./components/ItemTypes";
 import { COLORS } from "./constants";
 
 export const MAIN_PADDING = "2rem";
@@ -30,6 +31,8 @@ const FilterSort = styled.div`
   /* background-color: #000; */
 `;
 
+const ProductsContainer = styled.div``;
+
 const Products = styled.div`
   grid-area: products;
   display: grid;
@@ -39,6 +42,11 @@ const Products = styled.div`
   grid-template-rows: repeat(4, minmax(20rem, 1fr));
   grid-gap: 0.5rem;
   background-color: #fff;
+`;
+const ProductsTitle = styled.h4`
+  color: #6f6f6f;
+  font-weight: 300;
+  font-size: 1.25em;
 `;
 
 const Checkout = styled.div`
@@ -57,11 +65,16 @@ function App() {
           <MultipleSelect />
           <MultipleSelect />
         </FilterSort>
-        <Products>
-          {new Array(16).fill(0).map((_) => (
-            <Item></Item>
-          ))}
-        </Products>
+        <ProductsContainer>
+          <ProductsTitle>Products</ProductsTitle>
+          <ItemTypes />
+          <Products>
+            {new Array(16).fill(0).map((_) => (
+              <Item></Item>
+            ))}
+          </Products>
+        </ProductsContainer>
+
         <Checkout>
           <Chart />
         </Checkout>
