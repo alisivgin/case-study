@@ -61,9 +61,9 @@ function App() {
       <Header />
       <Body>
         <FilterSort>
-          <MultipleSelect />
-          <MultipleSelect />
-          <MultipleSelect />
+          <MultipleSelect type="sort" title="Sorting" />
+          <MultipleSelect title="Brands" inputPlaceHolder="Select Brand" />
+          <MultipleSelect title="Tags" inputPlaceHolder="Select Tag" />
         </FilterSort>
         <ProductsContainer>
           <ProductsTitle>Products</ProductsTitle>

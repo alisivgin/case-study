@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
-import { selectedIcon } from "../../assets";
+import { selectedIcon, selectedIconBlue } from "../../assets";
 
 const Container = styled.div`
   width: 18.5rem;
@@ -17,6 +17,7 @@ const ContainerBody = styled.div`
 const Title = styled.h3`
   color: ${COLORS.multipleSelectTitle};
   font-size: 13px;
+  font-weight: 600;
 `;
 const Input = styled.input`
   width: calc(100% - 1rem);
@@ -49,6 +50,22 @@ const Option = styled.div`
         background-position: center;
         background-color: #1ea4ce;
   `}
+    ${({ type }) =>
+      type === "sort" &&
+      `
+      border-radius: 2rem;
+      background-color: #fff;
+      border: 2px solid #DFDEE2;
+      box-shadow: none;
+  `}
+  ${({ type, selected }) =>
+      type === "sort" &&
+      selected &&
+      `
+      border: 2px solid #1EA4CE;
+      background-image: url(${selectedIconBlue});
+      fill: #000;
+  `}
   }
   & {
     /* line-height: 1.2rem; */
@@ -62,24 +79,34 @@ const OptionCount = styled.span`
   color: #a8a8a8;
 `;
 
-export default function MultipleSelect() {
+export default function MultipleSelect({ type, title, inputPlaceHolder }) {
   return (
     <Container>
-      <Title>Brands</Title>
+      <Title>{title}</Title>
       <ContainerBody>
-        <Input placeholder="Select" />
+        {type !== "sort" && <Input placeholder={inputPlaceHolder} />}
+
         <Options>
-          <Option selected>
+          <Option selected type={type}>
             All
             <OptionCount>(18)</OptionCount>
           </Option>
-          <Option selected>All</Option>
-          <Option>All</Option>
-          <Option>All</Option>
-          <Option>All</Option>
-          <Option>All</Option>
-          <Option>All</Option>
-          <Option>All</Option>
+          <Option selected type={type}>
+            All
+            <OptionCount>(18)</OptionCount>
+          </Option>
+          <Option type={type}>
+            All
+            <OptionCount>(18)</OptionCount>
+          </Option>
+          <Option type={type}>
+            All
+            <OptionCount>(18)</OptionCount>
+          </Option>
+          <Option type={type}>
+            All
+            <OptionCount>(18)</OptionCount>
+          </Option>
         </Options>
       </ContainerBody>
     </Container>
