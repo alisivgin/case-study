@@ -75,7 +75,7 @@ const Total = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export default function Chart() {
+export default function Basket() {
   return (
     <Container>
       <CheckoutItem>

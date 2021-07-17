@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Item from "./components/Item";
 import MultipleSelect from "./components/MultipleSelect";
 import Header from "./components/Header";
-import Chart from "./components/Chart";
+import Basket from "./components/Basket";
 import ItemTypes from "./components/ItemTypes";
 import { COLORS } from "./constants";
 
@@ -76,7 +76,7 @@ function App() {
         </ProductsContainer>
 
         <Checkout>
-          <Chart />
+          <Basket />
         </Checkout>
       </Body>
     </Container>
