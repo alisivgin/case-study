@@ -27,15 +27,18 @@ const Image = styled.div`
 
 const Price = styled.h3`
   color: ${COLORS.priceColor};
-  margin: 0;
+  margin: 0.4rem 0 0 0;
   padding: 0;
-  font-size: 1em;
+  font-size: 14px;
+  align-self: flex-start;
+  line-height: 20px;
+  font-weight: bold;
 `;
 
 const Name = styled.p`
-  /* line-height: 20; */
-  color: ${COLORS.priceColor};
-  margin: 0;
+  font-weight: 600;
+  color: #191919;
+  margin: 0.4rem 0 0.4rem 0;
   padding: 0;
 `;
 

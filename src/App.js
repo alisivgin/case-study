@@ -11,7 +11,7 @@ export const MAIN_PADDING = "2rem";
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: auto;
 `;
 
 const Body = styled.div`
@@ -38,10 +38,11 @@ const Products = styled.div`
   display: grid;
   align-items: center;
   justify-content: center;
-  grid-template-columns: repeat(4, minmax(8rem, 1fr));
-  grid-template-rows: repeat(4, minmax(20rem, 1fr));
+  grid-template-columns: repeat(4, minmax(auto, 1fr));
+  grid-template-rows: repeat(4, minmax(auto, 1fr));
   grid-gap: 0.5rem;
   background-color: #fff;
+  padding: 0.6rem;
 `;
 const ProductsTitle = styled.h4`
   color: #6f6f6f;
@@ -74,7 +75,6 @@ function App() {
             ))}
           </Products>
         </ProductsContainer>
-
         <Checkout>
           <Basket />
         </Checkout>
