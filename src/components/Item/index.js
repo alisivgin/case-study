@@ -22,18 +22,14 @@ const ImageContainer = styled.div`
 const Image = styled.div`
   width: 6rem;
   height: 6rem;
-  border: 2px solid ${COLORS.imageBorder};
-  border-radius: 4px;
   background-color: ${COLORS.imageBackground};
 `;
 
 const Price = styled.h3`
-  /* line-height: 20; */
   color: ${COLORS.priceColor};
   margin: 0;
   padding: 0;
   font-size: 1em;
-  /* font-weight: 600; */
 `;
 
 const Name = styled.p`

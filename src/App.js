@@ -1,6 +1,7 @@
 import "./App.css";
 import styled from "styled-components";
 import Item from "./components/Item";
+import MultipleSelect from "./components/MultipleSelect";
 import Header from "./components/Header";
 import { COLORS } from "./constants";
 
@@ -15,23 +16,25 @@ const Body = styled.div`
   display: grid;
   grid-template-areas: "filter-sort products checkout";
   grid-template-columns: 1fr 3fr 1fr;
+  grid-gap: 0.5rem;
   height: 100%;
   padding: 0 ${MAIN_PADDING} 0 ${MAIN_PADDING};
   background-color: ${COLORS.bodyBackground};
 `;
 const FilterSort = styled.div`
   grid-area: filter-sort;
-  background-color: #000;
+  /* background-color: #000; */
 `;
 
 const Products = styled.div`
   grid-area: products;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(12rem, 1fr));
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(4, minmax(8rem, 1fr));
+  grid-template-rows: repeat(4, minmax(20rem, 1fr));
   grid-gap: 0.5rem;
   background-color: #fff;
-  /* align-items: center; */
 `;
 
 const Checkout = styled.div`
@@ -44,7 +47,9 @@ function App() {
     <Container>
       <Header />
       <Body>
-        <FilterSort />
+        <FilterSort>
+          <MultipleSelect />
+        </FilterSort>
         <Products>
           {new Array(16).fill(0).map((_) => (
             <Item></Item>

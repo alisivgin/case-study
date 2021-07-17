@@ -11,6 +11,8 @@ const COLORS = {
   imageBorder: "#F3F0FE",
   imageBackground: "#C4C4C4",
   priceColor: ligthBlue,
+  multipleSelectBackground: "#FFFFFF",
+  multipleSelectTitle: "#697488",
 };
 
 export default COLORS;
