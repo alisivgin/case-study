@@ -6,7 +6,7 @@ import { logoIcon, totalPriceIcon } from "../../assets";
 // console.log(MAIN_PADDING);
 const HEADER_HEIGHT = "3rem";
 
-const Container = styled.div`
+const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;

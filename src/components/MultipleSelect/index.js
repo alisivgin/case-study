@@ -30,6 +30,20 @@ const Input = styled.input`
 const Options = styled.div`
   height: 8rem;
   overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: blue;
+    border-radius: 20px;
+    border: 3px solid #e0e0e0;
+  }
 `;
 
 const Option = styled.div`
@@ -92,6 +106,18 @@ export default function MultipleSelect({ type, title, inputPlaceHolder }) {
             <OptionCount>(18)</OptionCount>
           </Option>
           <Option selected type={type}>
+            All
+            <OptionCount>(18)</OptionCount>
+          </Option>
+          <Option type={type}>
+            All
+            <OptionCount>(18)</OptionCount>
+          </Option>
+          <Option type={type}>
+            All
+            <OptionCount>(18)</OptionCount>
+          </Option>
+          <Option type={type}>
             All
             <OptionCount>(18)</OptionCount>
           </Option>
