@@ -1,3 +1,3 @@
 export { getCompanies } from "./companies";
-export { getItems } from "./items";
+export { getProducts } from "./products";
 export { startup } from "./startup";

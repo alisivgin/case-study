@@ -1,4 +1,4 @@
-import { APPLY_FILTER, COMPLETE_GET_ITEMS } from "../actions/actionTypes";
+import { APPLY_FILTER } from "../actions/actionTypes";
 
 const initState = {
   brands: [],

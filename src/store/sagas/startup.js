@@ -1,7 +1,7 @@
 import { spawn } from "redux-saga/effects";
-import { getCompanies, getItems } from ".";
+import { getCompanies, getProducts } from ".";
 
 export function* startup() {
   yield spawn(getCompanies);
-  yield spawn(getItems);
+  yield spawn(getProducts);
 }
