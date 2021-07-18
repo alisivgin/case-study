@@ -68,7 +68,7 @@ const ProductsTitle = styled.h4`
   font-size: 1.25em;
 `;
 
-const Footer = styled.main`
+const Footer = styled.footer`
   width: 100%;
   height: 8rem;
   background-color: #e5e5e5;

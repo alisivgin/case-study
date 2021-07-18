@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
+import { multipleSelect as connect } from "../../containers";
 import { selectedIcon, selectedIconBlue } from "../../assets";
 
 const Container = styled.div`
@@ -27,8 +28,10 @@ const Input = styled.input`
   border: 2px solid #e0e0e0;
 `;
 
-const Options = styled.div`
-  height: 8rem;
+const Options = styled.ul`
+  height: 10rem;
+  padding: 0;
+  margin: 0;
   overflow-y: auto;
   ::-webkit-scrollbar {
     width: 4px;
@@ -46,7 +49,11 @@ const Options = styled.div`
   }
 `;
 
-const Option = styled.div`
+const Option = styled.li`
+  text-overflow: ellipsis;
+  margin: 0.5rem 0 0.5rem 0;
+  font-size: 14px;
+
   &:before {
     content: "";
     display: inline-block;
@@ -65,21 +72,21 @@ const Option = styled.div`
         background-color: #1ea4ce;
   `}
     ${({ type }) =>
-      type === "sort" &&
+      type === "sorting" &&
       `
       border-radius: 2rem;
       background-color: #fff;
       border: 2px solid #DFDEE2;
       box-shadow: none;
   `}
-  ${({ type, selected }) =>
-      type === "sort" &&
+      ${({ type, selected }) =>
+      type === "sorting" &&
       selected &&
       `
       border: 2px solid #1EA4CE;
       background-image: url(${selectedIconBlue});
       fill: #000;
-  `}
+  `};
   }
   & {
     /* line-height: 1.2rem; */
@@ -93,48 +100,26 @@ const OptionCount = styled.span`
   color: #a8a8a8;
 `;
 
-export default function MultipleSelect({ type, title, inputPlaceHolder }) {
+function MultipleSelect({ type, title, data, inputPlaceHolder }) {
   return (
     <Container>
       <Title>{title}</Title>
       <ContainerBody>
-        {type !== "sort" && <Input placeholder={inputPlaceHolder} />}
+        {type !== "sorting" && <Input placeholder={inputPlaceHolder} />}
 
         <Options>
-          <Option selected type={type}>
-            All
-            <OptionCount>(18)</OptionCount>
-          </Option>
-          <Option selected type={type}>
-            All
-            <OptionCount>(18)</OptionCount>
-          </Option>
-          <Option type={type}>
-            All
-            <OptionCount>(18)</OptionCount>
-          </Option>
-          <Option type={type}>
-            All
-            <OptionCount>(18)</OptionCount>
-          </Option>
-          <Option type={type}>
-            All
-            <OptionCount>(18)</OptionCount>
-          </Option>
-          <Option type={type}>
-            All
-            <OptionCount>(18)</OptionCount>
-          </Option>
-          <Option type={type}>
-            All
-            <OptionCount>(18)</OptionCount>
-          </Option>
-          <Option type={type}>
-            All
-            <OptionCount>(18)</OptionCount>
-          </Option>
+          {data.map((d) => {
+            return (
+              <Option type={type}>
+                {d.text}
+                {d.count ? <OptionCount>({d.count})</OptionCount> : null}
+              </Option>
+            );
+          })}
         </Options>
       </ContainerBody>
     </Container>
   );
 }
+
+export default connect(MultipleSelect);

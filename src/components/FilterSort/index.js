@@ -56,9 +56,9 @@ export default function FilterSort() {
   }
   return (
     <Container>
-      <MultipleSelect type="sort" title="Sorting" />
-      <MultipleSelect title="Brands" inputPlaceHolder="Select Brand" />
-      <MultipleSelect title="Tags" inputPlaceHolder="Select Tag" />
+      <MultipleSelect type="sorting" />
+      <MultipleSelect type="brands" />
+      <MultipleSelect type="tags" />
     </Container>
   );
 }
