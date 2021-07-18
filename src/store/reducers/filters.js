@@ -1,8 +1,9 @@
-import { APPLY_FILTER } from "../actions/actionTypes";
+import { APPLY_FILTER, COMPLETE_GET_ITEMS } from "../actions/actionTypes";
 
 const initState = {
   brands: [],
   tags: [],
+  productType: "mug",
 };
 
 function subState(state = initState, action) {
@@ -21,6 +22,11 @@ function subState(state = initState, action) {
           [action.filterType]: state.tags.includes(action.filter)
             ? state.tags.filter((t) => t !== action.filter)
             : [...state.tags, action.filter],
+        };
+      } else if (action.filterType === "productType") {
+        return {
+          ...state,
+          [action.filterType]: action.filter,
         };
       }
       return state;

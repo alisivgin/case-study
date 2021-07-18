@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { productTypes as connect } from "../../containers";
 
 const Container = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const Type = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   ${({ active }) =>
     active &&
     `
@@ -26,11 +28,19 @@ const Type = styled.div`
   `}
 `;
 
-export default function ItemTypes() {
+function ProductTypes({ productTypes, selected, applyFilter }) {
   return (
     <Container>
-      <Type active>mug</Type>
-      <Type>shirt</Type>
+      {productTypes.map((pt) => (
+        <Type
+          onClick={() => applyFilter("productType", pt)}
+          active={selected === pt}
+        >
+          {pt}
+        </Type>
+      ))}
     </Container>
   );
 }
+
+export default connect(ProductTypes);

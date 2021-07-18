@@ -4,3 +4,4 @@ export { default as brands } from "./brands";
 export { default as tags } from "./tags";
 export { default as filters } from "./filters";
 export { default as sort } from "./sort";
+export { default as productTypes } from "./productTypes";

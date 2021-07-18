@@ -3,11 +3,10 @@ import "./App.css";
 import "react-spring-bottom-sheet/dist/style.css";
 import styled from "styled-components";
 import { BottomSheet } from "react-spring-bottom-sheet";
-import Item from "./components/Item";
 import FilterSort from "./components/FilterSort";
 import Header from "./components/Header";
 import Checkout from "./components/Checkout";
-import ItemTypes from "./components/ItemTypes";
+import Products from "./components/Products";
 import { COLORS } from "./constants";
 import { useResponsive } from "./misc/hooks";
 
@@ -36,38 +35,6 @@ const Body = styled.div`
   }
 `;
 
-const ProductsContainer = styled.section`
-  /* width: 100%; */
-`;
-
-const Products = styled.div`
-  grid-area: products;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: repeat(4, minmax(auto, 1fr));
-  grid-template-rows: repeat(4, minmax(auto, 1fr));
-  grid-gap: 0.5rem;
-  background-color: #fff;
-  padding: 0.6rem;
-
-  @media (min-width: 320px) and (max-width: 480px) {
-    /* Styles */
-    grid-template-columns: repeat(2, minmax(auto, 1fr));
-    grid-template-rows: repeat(8, minmax(auto, 1fr));
-  }
-
-  /* @media (min-width: 480px) and (max-width: 1024px) {
-    grid-template-columns: repeat(4, minmax(auto, 1fr));
-    grid-template-rows: repeat(4, minmax(auto, 1fr));
-  } */
-`;
-const ProductsTitle = styled.h4`
-  color: #6f6f6f;
-  font-weight: 300;
-  font-size: 1.25em;
-`;
-
 const Footer = styled.footer`
   width: 100%;
   height: 8rem;
@@ -90,28 +57,11 @@ function App() {
       <Header />
       <Body>
         {isMobile ? (
-          <ProductsContainer>
-            <ProductsTitle>Products</ProductsTitle>
-            <FilterSort />
-            <ItemTypes />
-            <Products>
-              {new Array(16).fill(0).map((_) => (
-                <Item></Item>
-              ))}
-            </Products>
-          </ProductsContainer>
+          <Products />
         ) : (
           <>
             <FilterSort />
-            <ProductsContainer>
-              <ProductsTitle>Products</ProductsTitle>
-              <ItemTypes />
-              <Products>
-                {new Array(16).fill(0).map((_) => (
-                  <Item></Item>
-                ))}
-              </Products>
-            </ProductsContainer>
+            <Products />
           </>
         )}
         {!isMobile ? <Checkout /> : null}
