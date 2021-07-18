@@ -20,6 +20,7 @@ const Type = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-size: 14px;
   ${({ active }) =>
     active &&
     `

@@ -53,7 +53,7 @@ function Product({ slug, price, name, addToChart }) {
       </ImageContainer>
       <Price>₺ {price}</Price>
       <Name>{name}</Name>
-      <Button onClicked={() => addToChart(slug)}></Button>
+      <Button onClicked={() => addToChart(slug)} text="Add"></Button>
     </Container>
   );
 }

@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import ProductTypes from "../ProductTypes";
 import Product from "../Product";
+import FilterSort from "../FilterSort";
 import { products as connect } from "../../containers";
+import { useResponsive } from "../../misc/hooks";
 
 const ProductsContainer = styled.section`
   /* width: 100%; */
@@ -36,9 +38,11 @@ const ProductsTitle = styled.h4`
   font-size: 1.25em;
 `;
 function Products({ products }) {
+  const { isMobile } = useResponsive();
   return (
     <ProductsContainer>
       <ProductsTitle>Products</ProductsTitle>
+      {isMobile ? <FilterSort /> : null}
       <ProductTypes />
       <Items>
         {products.map((p) => (

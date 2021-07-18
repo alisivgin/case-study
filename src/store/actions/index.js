@@ -27,3 +27,16 @@ export function removeFromChart(slug) {
     product: slug,
   };
 }
+
+export function showBottomSheet(content) {
+  return {
+    type: ACTION.SHOW_BOTTOM_SHEET,
+    content,
+  };
+}
+
+export function closeBottomSheet() {
+  return {
+    type: ACTION.CLOSE_BOTTOM_SHEET,
+  };
+}

@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import "react-spring-bottom-sheet/dist/style.css";
 import styled from "styled-components";
-import { BottomSheet } from "react-spring-bottom-sheet";
+import BottomSheet from "./components/BottomSheet";
 import FilterSort from "./components/FilterSort";
 import Header from "./components/Header";
 import Chart from "./components/Chart";
@@ -70,12 +70,7 @@ function App() {
         <a href="/#">©2021 Market</a> &middot;
         <a href="/#">Privacy Policy</a>
       </Footer>
-      {isMobile ? (
-        <BottomSheet open={false}>
-          {/* <MultipleSelect title="Tags" inputPlaceHolder="Select Tag" /> */}
-          <p>sadfkaksdjnfşasdjf</p>
-        </BottomSheet>
-      ) : null}
+      {isMobile ? <BottomSheet /> : null}
     </Container>
   );
 }

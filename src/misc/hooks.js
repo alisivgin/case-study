@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState, useEffect } from "react";
 export function useResponsive() {
   const [_, setSize] = useState([0, 0]);
   useLayoutEffect(() => {
@@ -14,6 +14,23 @@ export function useResponsive() {
       media("(min-width: 320px) and (max-width: 480px)") ||
       media("(min-width: 480px) and (max-width: 1024px)"),
   };
+}
+
+export function useOnClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+      handler(event);
+    };
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
 }
 
 function media(query) {

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { BottomSheet } from "react-spring-bottom-sheet";
 import { useResponsive } from "../../misc/hooks";
+import { filterSort as connect } from "../../containers";
 
 import MultipleSelect from "../MultipleSelect";
 
@@ -20,7 +20,7 @@ const ContainerMobile = styled.div`
   height: 2rem;
   border-radius: 2px;
   background-color: #f2f0fd;
-  div.item {
+  span.item {
     width: 100%;
     height: 2rem;
     /* background-color: #f2f0fd; */
@@ -28,31 +28,34 @@ const ContainerMobile = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 14px;
   }
 `;
 
-export default function FilterSort() {
+function FilterSort({ showBottomSheet, brandFilterCount, tagFilterCount }) {
   const { isMobile } = useResponsive();
-
+  let brandsText = "Brands";
+  if (brandFilterCount > 0) brandsText += ` (${brandFilterCount})`;
+  let TagsText = "Tags";
+  if (tagFilterCount > 0) TagsText += ` (${tagFilterCount})`;
   function FilterSortMobile() {
     return (
       <ContainerMobile>
-        <div className="item">Sorting</div>
-        <div className="item">Brands</div>
-        <div className="item">Tags</div>
+        <span onClick={() => showBottomSheet("sorting")} className="item">
+          Sorting
+        </span>
+        <span onClick={() => showBottomSheet("brands")} className="item">
+          {brandsText}
+        </span>
+        <span onClick={() => showBottomSheet("tags")} className="item">
+          {TagsText}
+        </span>
       </ContainerMobile>
     );
   }
 
   if (isMobile) {
-    return (
-      <>
-        <FilterSortMobile />
-        {/* <BottomSheet open={false}>
-          <MultipleSelect title="Tags" inputPlaceHolder="Select Tag" />
-        </BottomSheet> */}
-      </>
-    );
+    return <FilterSortMobile />;
   }
   return (
     <Container>
@@ -62,3 +65,5 @@ export default function FilterSort() {
     </Container>
   );
 }
+
+export default connect(FilterSort);

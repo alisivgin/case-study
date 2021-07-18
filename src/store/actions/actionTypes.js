@@ -13,3 +13,6 @@ export const APPLY_SORT = "APPLY_SORT";
 
 export const ADD_TO_CHART = "ADD_TO_CHART";
 export const REMOVE_FROM_CHART = "REMOVE_FROM_CHART";
+
+export const SHOW_BOTTOM_SHEET = "SHOW_BOTTOM_SHEET";
+export const CLOSE_BOTTOM_SHEET = "CLOSE_BOTTOM_SHEET";

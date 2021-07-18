@@ -103,7 +103,6 @@ const Total = styled.div`
 
 const Message = styled.p``;
 function Basket({ products, totalPrice, addToChart, removeFromChart }) {
-  console.log(products);
   if (products.length === 0) {
     return (
       <Container>
