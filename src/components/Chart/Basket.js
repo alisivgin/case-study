@@ -7,7 +7,7 @@ const ICON_SIZE = "0.8rem";
 const COUNT_SIZE = "2rem";
 
 const Container = styled.div`
-  min-width: 15rem;
+  min-width: 18.5rem;
   height: 20rem;
   margin-top: 4rem;
   padding: 1.5rem;
@@ -76,6 +76,7 @@ const CountChanger = styled.span`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
   ${({ type }) =>
     type === "increment" &&
     `

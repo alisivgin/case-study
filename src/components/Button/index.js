@@ -9,6 +9,7 @@ const Btn = styled.button`
   border-radius: 2px;
   width: 100%;
   height: 22px;
+  cursor: pointer;
 `;
 
 export default function Button({ onClicked }) {

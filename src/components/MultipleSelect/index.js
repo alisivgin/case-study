@@ -6,7 +6,7 @@ import { selectedIcon, selectedIconBlue } from "../../assets";
 
 const Container = styled.div`
   min-width: 18.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
 `;
 
 const ContainerBody = styled.div`

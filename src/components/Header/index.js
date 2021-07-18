@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 import { logoIcon, totalPriceIcon } from "../../assets";
-// import { MAIN_PADDING } from "../../App";
-// console.log(MAIN_PADDING);
+import { header as connect } from "../../containers";
 const HEADER_HEIGHT = "3rem";
 
 const Container = styled.header`
@@ -45,13 +44,15 @@ const Text = styled.span`
   margin-left: 2rem;
 `;
 
-export default function Item() {
+function Item({ totalPrice }) {
   return (
     <Container>
       <Logo />
       <TotalPrice>
-        <Text>39,65</Text>
+        <Text>₺ {totalPrice}</Text>
       </TotalPrice>
     </Container>
   );
 }
+
+export default connect(Item);

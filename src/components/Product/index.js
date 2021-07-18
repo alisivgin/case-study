@@ -8,9 +8,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 8rem;
-  /* background-color: #c4c4c4; */
   align-items: center;
   padding: 0.5rem;
+  margin: 0 auto;
 `;
 
 const ImageContainer = styled.div`
@@ -37,7 +37,9 @@ const Price = styled.h3`
 `;
 
 const Name = styled.p`
+  min-height: 2.25rem;
   font-weight: 600;
+  font-size: 14px;
   color: #191919;
   margin: 0.4rem 0 0.4rem 0;
   padding: 0;
