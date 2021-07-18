@@ -1,8 +1,8 @@
 import { LIFECYCLE } from "../../constants";
 import {
-  START_GET_COMPANIES,
-  COMPLETE_GET_COMPANIES,
-  FAIL_GET_COMPANIES,
+  START_GET_ITEMS,
+  COMPLETE_GET_ITEMS,
+  FAIL_GET_ITEMS,
 } from "../actions/actionTypes";
 
 const initState = {
@@ -12,20 +12,20 @@ const initState = {
 
 function subState(state = initState, action) {
   switch (action.type) {
-    case START_GET_COMPANIES:
+    case START_GET_ITEMS:
       return { ...state, lifecycle: LIFECYCLE.PENDING };
-    case COMPLETE_GET_COMPANIES:
+    case COMPLETE_GET_ITEMS:
       return {
         ...state,
         lifecycle: LIFECYCLE.DONE,
-        data: action.companies.reduce((acc, c) => {
+        data: action.items.reduce((acc, i) => {
           return {
             ...acc,
-            [c.slug]: c,
+            [i.slug]: i,
           };
         }, {}),
       };
-    case FAIL_GET_COMPANIES:
+    case FAIL_GET_ITEMS:
       return { ...state, lifecycle: LIFECYCLE.FAILED };
     default:
       return state;

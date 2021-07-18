@@ -1,6 +1,4 @@
 export default function routes() {
-  // this.urlPrefix = API_HOST;
-
   this.get("/", () => {
     return { status: "OK" };
   });
