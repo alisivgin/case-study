@@ -4,7 +4,7 @@ import { COLORS } from "../../constants";
 import { selectedIcon, selectedIconBlue } from "../../assets";
 
 const Container = styled.div`
-  width: 18.5rem;
+  min-width: 18.5rem;
   padding: 1rem;
 `;
 

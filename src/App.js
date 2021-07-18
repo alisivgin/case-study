@@ -1,9 +1,12 @@
+import React from "react";
 import "./App.css";
+import "react-spring-bottom-sheet/dist/style.css";
 import styled from "styled-components";
+import { BottomSheet } from "react-spring-bottom-sheet";
 import Item from "./components/Item";
-import MultipleSelect from "./components/MultipleSelect";
+import FilterSort from "./components/FilterSort";
 import Header from "./components/Header";
-import Basket from "./components/Basket";
+import Checkout from "./components/Checkout";
 import ItemTypes from "./components/ItemTypes";
 import { COLORS } from "./constants";
 import { useResponsive } from "./misc/hooks";
@@ -24,26 +27,18 @@ const Body = styled.div`
   padding: 0 ${MAIN_PADDING} 0 ${MAIN_PADDING};
   background-color: ${COLORS.bodyBackground};
 
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 320px) and (max-width: 480px),
+    (min-width: 480px) and (max-width: 1024px) {
     /* Styles */
-    grid-template-areas: "filter-sort" "products" "checkout";
+    grid-template-areas: "products";
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr 1fr;
-  }
-`;
-const FilterSort = styled.section`
-  grid-area: filter-sort;
-  display: flex;
-  flex-direction: column;
-  grid-gap: 2rem;
-  /* background-color: #000; */
-  @media (min-width: 320px) and (max-width: 480px) {
-    /* Styles */
-    display: none;
+    grid-template-rows: 1fr;
   }
 `;
 
-const ProductsContainer = styled.section``;
+const ProductsContainer = styled.section`
+  /* width: 100%; */
+`;
 
 const Products = styled.div`
   grid-area: products;
@@ -61,17 +56,16 @@ const Products = styled.div`
     grid-template-columns: repeat(2, minmax(auto, 1fr));
     grid-template-rows: repeat(8, minmax(auto, 1fr));
   }
+
+  /* @media (min-width: 480px) and (max-width: 1024px) {
+    grid-template-columns: repeat(4, minmax(auto, 1fr));
+    grid-template-rows: repeat(4, minmax(auto, 1fr));
+  } */
 `;
 const ProductsTitle = styled.h4`
   color: #6f6f6f;
   font-weight: 300;
   font-size: 1.25em;
-`;
-
-const Checkout = styled.section`
-  grid-area: checkout;
-  /* background-color: #fff; */
-  /* background-color: #000; */
 `;
 
 function App() {
@@ -80,27 +74,39 @@ function App() {
     <Container>
       <Header />
       <Body>
-        {!isMobile ? (
-          <FilterSort>
-            <MultipleSelect type="sort" title="Sorting" />
-            <MultipleSelect title="Brands" inputPlaceHolder="Select Brand" />
-            <MultipleSelect title="Tags" inputPlaceHolder="Select Tag" />
-          </FilterSort>
-        ) : null}
-
-        <ProductsContainer>
-          <ProductsTitle>Products</ProductsTitle>
-          <ItemTypes />
-          <Products>
-            {new Array(16).fill(0).map((_) => (
-              <Item></Item>
-            ))}
-          </Products>
-        </ProductsContainer>
-        <Checkout>
-          <Basket />
-        </Checkout>
+        {isMobile ? (
+          <ProductsContainer>
+            <ProductsTitle>Products</ProductsTitle>
+            <FilterSort />
+            <ItemTypes />
+            <Products>
+              {new Array(16).fill(0).map((_) => (
+                <Item></Item>
+              ))}
+            </Products>
+          </ProductsContainer>
+        ) : (
+          <>
+            <FilterSort />
+            <ProductsContainer>
+              <ProductsTitle>Products</ProductsTitle>
+              <ItemTypes />
+              <Products>
+                {new Array(16).fill(0).map((_) => (
+                  <Item></Item>
+                ))}
+              </Products>
+            </ProductsContainer>
+          </>
+        )}
+        {!isMobile ? <Checkout /> : null}
       </Body>
+      {isMobile ? (
+        <BottomSheet open={false}>
+          {/* <MultipleSelect title="Tags" inputPlaceHolder="Select Tag" /> */}
+          <p>sadfkaksdjnfşasdjf</p>
+        </BottomSheet>
+      ) : null}
     </Container>
   );
 }
