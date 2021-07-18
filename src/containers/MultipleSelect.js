@@ -1,21 +1,43 @@
 import { connect } from "react-redux";
+import { applyFilter, applySort } from "../store/actions";
 
-const sortProps = {
-  title: "Sorting",
-  data: [
-    { type: "price-low-to-high", text: "Price low to High" },
-    { type: "price-high-to-low", text: "Price high to low" },
-    { type: "new-to-old", text: "New to old" },
-    { type: "old-to-new", text: "Old to new" },
-  ],
-};
-
-export function mapStateToProps({ tags, brands, companies }, { type }) {
+export function mapStateToProps(
+  { tags, brands, companies, filters, sort },
+  { type }
+) {
   let props = {};
   switch (type) {
     default:
     case "sorting":
-      props = sortProps;
+      props = {
+        title: "Sorting",
+        data: [
+          {
+            slug: "price-low-to-high",
+            text: "Price low to High",
+            type: "sorting",
+            selected: sort === "price-low-to-high",
+          },
+          {
+            slug: "price-high-to-low",
+            text: "Price high to low",
+            type: "sorting",
+            selected: sort === "price-high-to-low",
+          },
+          {
+            slug: "new-to-old",
+            text: "New to old",
+            type: "sorting",
+            selected: sort === "new-to-old",
+          },
+          {
+            slug: "old-to-new",
+            text: "Old to new",
+            type: "sorting",
+            selected: sort === "old-to-new",
+          },
+        ],
+      };
       break;
     case "brands":
       props = {
@@ -23,8 +45,14 @@ export function mapStateToProps({ tags, brands, companies }, { type }) {
         data: Object.keys(brands).reduce((acc, b) => {
           return [
             ...acc,
-            { type: b, text: companies.data[b].name, count: brands[b] },
-          ];
+            {
+              slug: b,
+              text: companies.data[b].name,
+              count: brands[b],
+              type,
+              selected: filters.brands.includes(b),
+            },
+          ].sort((a, b) => b.selected - a.selected);
         }, []),
       };
       break;
@@ -32,7 +60,16 @@ export function mapStateToProps({ tags, brands, companies }, { type }) {
       props = {
         title: "Tags",
         data: Object.keys(tags).reduce((acc, t) => {
-          return [...acc, { type: t, text: t, count: tags[t] }];
+          return [
+            ...acc,
+            {
+              slug: t,
+              text: t,
+              count: tags[t],
+              type,
+              selected: filters.tags.includes(t),
+            },
+          ].sort((a, b) => b.selected - a.selected);
         }, []),
       };
       break;
@@ -40,6 +77,6 @@ export function mapStateToProps({ tags, brands, companies }, { type }) {
   return props;
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { applyFilter, applySort };
 
 export default connect(mapStateToProps, mapDispatchToProps);

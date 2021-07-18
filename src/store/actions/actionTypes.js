@@ -7,3 +7,6 @@ export const GET_ITEMS = "GET_ITEMS";
 export const START_GET_ITEMS = "START_GET_ITEMS";
 export const COMPLETE_GET_ITEMS = "COMPLETE_GET_ITEMS";
 export const FAIL_GET_ITEMS = "FAIL_GET_ITEMS";
+
+export const APPLY_FILTER = "APPLY_FILTER";
+export const APPLY_SORT = "APPLY_SORT";

@@ -53,6 +53,7 @@ const Option = styled.li`
   text-overflow: ellipsis;
   margin: 0.5rem 0 0.5rem 0;
   font-size: 14px;
+  cursor: pointer;
 
   &:before {
     content: "";
@@ -101,7 +102,14 @@ const OptionCount = styled.span`
   margin-left: 0.25rem;
 `;
 
-function MultipleSelect({ type, title, data, inputPlaceHolder }) {
+function MultipleSelect({
+  type,
+  title,
+  data,
+  inputPlaceHolder,
+  applyFilter,
+  applySort,
+}) {
   const [search, setSearch] = useState("");
   let filteredData = [];
   if (search > "") {
@@ -111,6 +119,16 @@ function MultipleSelect({ type, title, data, inputPlaceHolder }) {
   } else {
     filteredData = data;
   }
+
+  function onClicked(slug, type) {
+    if (type === "brands" || type === "tags") {
+      applyFilter(type, slug);
+    }
+    if (type === "sorting") {
+      applySort(slug);
+    }
+  }
+
   return (
     <Container>
       <Title>{title}</Title>
@@ -125,7 +143,12 @@ function MultipleSelect({ type, title, data, inputPlaceHolder }) {
         <Options>
           {filteredData.map((d) => {
             return (
-              <Option type={type} key={d.type}>
+              <Option
+                selected={d.selected}
+                type={type}
+                key={d.slug}
+                onClick={() => onClicked(d.slug, d.type)}
+              >
                 {d.text}
                 {d.count ? <OptionCount>({d.count})</OptionCount> : null}
               </Option>
