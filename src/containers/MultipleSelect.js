@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { applyFilter, applySort } from "../store/actions";
 
 export function mapStateToProps(
-  { tags, brands, companies, filters, sort },
+  { tags, brands, companies, filters, sort, products: { lifecycle } },
   { type }
 ) {
   let props = {};
@@ -74,7 +74,10 @@ export function mapStateToProps(
       };
       break;
   }
-  return props;
+  return {
+    lifecycle,
+    ...props,
+  };
 }
 
 const mapDispatchToProps = { applyFilter, applySort };

@@ -5,6 +5,8 @@ import Product from "../Product";
 import FilterSort from "../FilterSort";
 import { products as connect } from "../../containers";
 import { useResponsive } from "../../misc/hooks";
+import { LIFECYCLE } from "../../constants";
+import ContentLoader from "react-content-loader";
 
 const ProductsContainer = styled.section`
   /* width: 100%; */
@@ -38,8 +40,22 @@ const ProductsTitle = styled.h4`
   font-weight: 300;
   font-size: 1.25em;
 `;
-function Products({ products }) {
+function Products({ products, lifecycle }) {
   const { isMobile } = useResponsive();
+  // if (true) {
+  if (lifecycle === LIFECYCLE.PENDING) {
+    return (
+      <ProductsContainer>
+        <ProductsTitle>Products</ProductsTitle>
+        <ProductTypeLoader />
+        <Items>
+          {new Array(16).fill(0).map((_) => {
+            return <ProductLoader />;
+          })}
+        </Items>
+      </ProductsContainer>
+    );
+  }
   return (
     <ProductsContainer>
       <ProductsTitle>Products</ProductsTitle>
@@ -55,3 +71,34 @@ function Products({ products }) {
 }
 
 export default connect(Products);
+
+const ProductLoader = (props) => (
+  <ContentLoader
+    style={{ margin: "2rem auto" }}
+    speed={2}
+    width={160}
+    height={200}
+    viewBox="0 0 160 200"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    <rect x="0" y="2" rx="2" ry="2" width="160" height="130" />
+    <rect x="0" y="163" rx="2" ry="2" width="160" height="40" />
+    <rect x="0" y="138" rx="2" ry="2" width="160" height="15" />
+  </ContentLoader>
+);
+
+const ProductTypeLoader = (props) => (
+  <ContentLoader
+    speed={2}
+    width={160}
+    height={40}
+    viewBox="0 0 160 40"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    <rect x="0" y="0" rx="2" ry="2" width="160" height="40" />
+  </ContentLoader>
+);
