@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ProductTypes from "../ProductTypes";
 import Product from "../Product";
 import FilterSort from "../FilterSort";
+import Pagination from "../Pagination";
 import { products as connect } from "../../containers";
 import { useResponsive } from "../../misc/hooks";
 import { LIFECYCLE } from "../../constants";
@@ -23,6 +24,8 @@ const Items = styled.div`
   background-color: #fff;
   padding: 0.6rem;
   border-radius: 2px;
+  height: 63rem;
+  overflow: auto;
 
   @media (min-width: 320px) and (max-width: 480px) {
     /* Styles */
@@ -66,6 +69,7 @@ function Products({ products, lifecycle }) {
           <Product {...p}></Product>
         ))}
       </Items>
+      <Pagination />
     </ProductsContainer>
   );
 }

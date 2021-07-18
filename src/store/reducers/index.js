@@ -7,3 +7,4 @@ export { default as sort } from "./sort";
 export { default as productTypes } from "./productTypes";
 export { default as chart } from "./chart";
 export { default as bottomSheet } from "./bottomSheet";
+export { default as pagination } from "./pagination";

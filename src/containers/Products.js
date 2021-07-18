@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { addToChart } from "../store/actions";
+import { ONE_PAGE_ITEM_COUNT } from "../constants";
 
 const sortOptions = {
   "price-low-to-high": (a, b) => a.price - b.price,
@@ -8,10 +9,15 @@ const sortOptions = {
   "old-to-new": (a, b) => b.added - a.added,
 };
 
-export function mapStateToProps({ products, filters, sort }) {
+export function mapStateToProps({ products, filters, sort, pagination }) {
   const filteredProducts = filter(products, filters);
+  const sorted = sortProducts(filteredProducts, sort);
+  const paginated = sorted.slice(
+    (pagination.activeNumber - 1) * ONE_PAGE_ITEM_COUNT,
+    pagination.activeNumber * ONE_PAGE_ITEM_COUNT
+  );
   return {
-    products: sortProducts(filteredProducts, sort),
+    products: paginated,
     lifecycle: products.lifecycle,
   };
 }
