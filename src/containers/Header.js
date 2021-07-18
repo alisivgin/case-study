@@ -6,7 +6,7 @@ export function mapStateToProps({ chart, products }) {
     return acc + chart[pSlag] * products.data[pSlag].price;
   }, 0);
   return {
-    totalPrice: totalPrice.toFixed(2),
+    totalPrice: totalPrice.toFixed(2).replace(".", ","),
   };
 }
 

@@ -13,6 +13,7 @@ const ContainerBody = styled.div`
   width: auto;
   padding: 1rem;
   background-color: ${COLORS.multipleSelectBackground};
+  border-radius: 2px;
 `;
 
 const Title = styled.h3`
@@ -26,6 +27,7 @@ const Input = styled.input`
   padding-left: 0.6rem;
   margin-bottom: 0.6rem;
   border: 2px solid #e0e0e0;
+  border-radius: 2px;
 `;
 
 const Options = styled.ul`

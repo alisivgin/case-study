@@ -20,6 +20,7 @@ const Items = styled.div`
   grid-gap: 0.5rem;
   background-color: #fff;
   padding: 0.6rem;
+  border-radius: 2px;
 
   @media (min-width: 320px) and (max-width: 480px) {
     /* Styles */
