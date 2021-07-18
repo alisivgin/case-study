@@ -51,7 +51,7 @@ function Product({ slug, price, name, addToChart }) {
       <ImageContainer>
         <ProductImage />
       </ImageContainer>
-      <Price>₺ {price}</Price>
+      <Price>₺ {price.toString().replace(".", ",")}</Price>
       <Name>{name}</Name>
       <Button onClicked={() => addToChart(slug)} text="Add"></Button>
     </Container>

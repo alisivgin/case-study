@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { COLORS } from "../../constants";
+import { COLORS, LIFECYCLE } from "../../constants";
 import { multipleSelect as connect } from "../../containers";
 import { selectedIcon, selectedIconBlue } from "../../assets";
+import ContentLoader from "react-content-loader";
 
 const Container = styled.div`
   min-width: 18.5rem;
@@ -13,6 +14,7 @@ const ContainerBody = styled.div`
   width: auto;
   padding: 1rem;
   background-color: ${COLORS.multipleSelectBackground};
+  border-radius: 2px;
 `;
 
 const Title = styled.h3`
@@ -26,6 +28,7 @@ const Input = styled.input`
   padding-left: 0.6rem;
   margin-bottom: 0.6rem;
   border: 2px solid #e0e0e0;
+  border-radius: 2px;
 `;
 
 const Options = styled.ul`
@@ -109,8 +112,19 @@ function MultipleSelect({
   inputPlaceHolder,
   applyFilter,
   applySort,
+  lifecycle,
 }) {
   const [search, setSearch] = useState("");
+  if (lifecycle === LIFECYCLE.PENDING && type !== "sorting") {
+    return (
+      <Container>
+        <Title>{title}</Title>
+        <ContainerBody>
+          <Loader />
+        </ContainerBody>
+      </Container>
+    );
+  }
   let filteredData = [];
   if (search > "") {
     filteredData = data.filter((d) =>
@@ -161,3 +175,23 @@ function MultipleSelect({
 }
 
 export default connect(MultipleSelect);
+
+const Loader = (props) => (
+  <ContentLoader
+    speed={2}
+    width={300}
+    height={210}
+    viewBox="0 0 300 210"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    <rect x="19" y="20" rx="2" ry="2" width="300" height="40" />
+    <rect x="20" y="70" rx="2" ry="2" width="300" height="15" />
+    <rect x="19" y="95" rx="2" ry="2" width="300" height="15" />
+    <rect x="22" y="120" rx="2" ry="2" width="300" height="15" />
+    <rect x="21" y="145" rx="2" ry="2" width="300" height="15" />
+    <rect x="21" y="170" rx="2" ry="2" width="300" height="15" />
+    <rect x="21" y="195" rx="2" ry="2" width="300" height="15" />
+  </ContentLoader>
+);

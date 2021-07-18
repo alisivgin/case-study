@@ -48,6 +48,9 @@ const TotalPrice = styled.div`
 
 const Text = styled.span`
   margin-left: 2rem;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
 `;
 
 function Item({ totalPrice, showBottomSheet }) {

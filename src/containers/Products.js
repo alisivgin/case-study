@@ -12,6 +12,7 @@ export function mapStateToProps({ products, filters, sort }) {
   const filteredProducts = filter(products, filters);
   return {
     products: sortProducts(filteredProducts, sort),
+    lifecycle: products.lifecycle,
   };
 }
 

@@ -12,6 +12,7 @@ const Container = styled.div`
   margin-top: 4rem;
   padding: 1.5rem;
   border: 6px solid #1ea4ce;
+  border-radius: 2px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -55,6 +56,16 @@ const CheckoutItem = styled.div`
 const ItemInfo = styled.div`
   display: flex;
   flex-direction: column;
+
+  .price {
+    color: #1ea4ce;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .name {
+    font-size: 14px;
+    line-height: 18px;
+  }
 `;
 
 const CountContainer = styled.div`
@@ -68,6 +79,7 @@ const Count = styled.div`
   width: ${COUNT_SIZE};
   height: ${COUNT_SIZE};
   background-color: #1ea4ce;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,6 +93,8 @@ const CountChanger = styled.span`
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
   ${({ type }) =>
     type === "increment" &&
     `
@@ -97,20 +111,29 @@ const Total = styled.div`
   width: 6rem;
   height: 3rem;
   border: 2px solid #1ea4ce;
+  border-radius: 2px;
   margin-left: auto;
   margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   align-self: flex-start;
+  color: #1ea4ce;
+  font-size: 14px;
+  font-weight: 600;
 `;
 
-const Message = styled.p``;
+const Message = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  color: #1ea4ce;
+`;
 function Basket({ products, totalPrice, addToChart, removeFromChart }) {
+  console.log(totalPrice);
   if (products.length === 0) {
     return (
       <Container>
-        <Message>Please add product to chart.</Message>
+        <Message>Please add a product to chart.</Message>
       </Container>
     );
   }
@@ -121,8 +144,10 @@ function Basket({ products, totalPrice, addToChart, removeFromChart }) {
           return (
             <CheckoutItem>
               <ItemInfo>
-                <span>{p.name}</span>
-                <span>₺ {p.price}</span>
+                <span className="name">{p.name}</span>
+                <span className="price">
+                  ₺ {p.price.toString().replace(".", ",")}
+                </span>
               </ItemInfo>
               <CountContainer>
                 <CountChanger
@@ -139,7 +164,9 @@ function Basket({ products, totalPrice, addToChart, removeFromChart }) {
           );
         })}
       </ProductsContainer>
-      {totalPrice > 0 ? <Total>₺ {totalPrice}</Total> : null}
+      {totalPrice > 0 ? (
+        <Total>₺ {totalPrice.toString().replace(".", ",")}</Total>
+      ) : null}
     </Container>
   );
 }

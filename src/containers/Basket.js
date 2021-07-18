@@ -8,7 +8,7 @@ export function mapStateToProps({ chart, products }) {
   const totalPrice = items.reduce((acc, p) => acc + p.count * p.price, 0);
   return {
     products: items,
-    totalPrice: totalPrice.toFixed(2),
+    totalPrice: totalPrice,
   };
 }
 
