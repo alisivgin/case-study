@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { showBottomSheet } from "../store/actions";
 
 export function mapStateToProps({ chart, products }) {
   const totalPrice = Object.keys(chart).reduce((acc, pSlag) => {
@@ -9,4 +10,6 @@ export function mapStateToProps({ chart, products }) {
   };
 }
 
-export default connect(mapStateToProps);
+const mapDispatchToProps = { showBottomSheet };
+
+export default connect(mapStateToProps, mapDispatchToProps);

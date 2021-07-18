@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BottomSheet as Sheet } from "react-spring-bottom-sheet";
 import { bottomSheet as connect } from "../../containers";
 import MultipleSelect from "../MultipleSelect";
+import Chart from "../Chart";
 import Button from "../Button";
 import { useOnClickOutside } from "../../misc/hooks";
 
@@ -22,6 +23,9 @@ function BottomSheet({ show, content, closeBottomSheet }) {
     case "brands":
     case "sorting":
       child.push(<MultipleSelect type={content} />);
+      break;
+    case "chart":
+      child.push(<Chart />);
       break;
   }
   child.push(<Button onClicked={closeBottomSheet} text="Close" />);

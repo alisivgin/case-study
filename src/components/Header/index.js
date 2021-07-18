@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { COLORS } from "../../constants";
 import { logoIcon, totalPriceIcon } from "../../assets";
 import { header as connect } from "../../containers";
+import { useResponsive } from "../../misc/hooks";
 const HEADER_HEIGHT = "3rem";
 
 const Container = styled.header`
@@ -11,6 +12,11 @@ const Container = styled.header`
   justify-content: center;
   height: ${HEADER_HEIGHT};
   background-color: ${COLORS.headerBackground};
+  @media (min-width: 320px) and (max-width: 480px),
+    (min-width: 480px) and (max-width: 1024px) {
+    position: fixed;
+    width: 100%;
+  }
 `;
 
 const Logo = styled.div`
@@ -44,9 +50,10 @@ const Text = styled.span`
   margin-left: 2rem;
 `;
 
-function Item({ totalPrice }) {
+function Item({ totalPrice, showBottomSheet }) {
+  const { isMobile } = useResponsive();
   return (
-    <Container>
+    <Container onClick={() => (isMobile ? showBottomSheet("chart") : null)}>
       <Logo />
       <TotalPrice>
         <Text>₺ {totalPrice}</Text>

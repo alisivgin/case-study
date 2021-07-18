@@ -15,6 +15,10 @@ const Container = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  @media (min-width: 320px) and (max-width: 480px),
+    (min-width: 480px) and (max-width: 1024px) {
+    border: none;
+  }
 `;
 
 const ProductsContainer = styled.div`
