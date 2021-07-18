@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 import { multipleSelect as connect } from "../../containers";
@@ -102,16 +102,30 @@ const OptionCount = styled.span`
 `;
 
 function MultipleSelect({ type, title, data, inputPlaceHolder }) {
+  const [search, setSearch] = useState("");
+  let filteredData = [];
+  if (search > "") {
+    filteredData = data.filter((d) =>
+      d.text.toLowerCase().includes(search.toLowerCase())
+    );
+  } else {
+    filteredData = data;
+  }
   return (
     <Container>
       <Title>{title}</Title>
       <ContainerBody>
-        {type !== "sorting" && <Input placeholder={inputPlaceHolder} />}
+        {type !== "sorting" && (
+          <Input
+            onChange={({ target }) => setSearch(target.value)}
+            placeholder={inputPlaceHolder}
+          />
+        )}
 
         <Options>
-          {data.map((d) => {
+          {filteredData.map((d) => {
             return (
-              <Option type={type}>
+              <Option type={type} key={d.type}>
                 {d.text}
                 {d.count ? <OptionCount>({d.count})</OptionCount> : null}
               </Option>
