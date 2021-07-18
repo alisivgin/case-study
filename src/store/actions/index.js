@@ -14,3 +14,16 @@ export function applySort(sortFor) {
     sortFor,
   };
 }
+export function addToChart(slug) {
+  return {
+    type: ACTION.ADD_TO_CHART,
+    product: slug,
+  };
+}
+
+export function removeFromChart(slug) {
+  return {
+    type: ACTION.REMOVE_FROM_CHART,
+    product: slug,
+  };
+}

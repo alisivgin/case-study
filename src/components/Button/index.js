@@ -11,6 +11,6 @@ const Btn = styled.button`
   height: 22px;
 `;
 
-export default function Button() {
-  return <Btn>Add</Btn>;
+export default function Button({ onClicked }) {
+  return <Btn onClick={onClicked}>Add</Btn>;
 }

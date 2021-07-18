@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { plus, minus } from "../../assets";
-import { COLORS } from "../../constants";
+import { basket as connect } from "../../containers";
 
 const ICON_SIZE = "0.8rem";
 const COUNT_SIZE = "2rem";
@@ -47,7 +47,7 @@ const Count = styled.div`
   color: #fff;
   margin: 0 1rem 0 1rem;
 `;
-const CountChanger = styled.div`
+const CountChanger = styled.span`
   width: ${ICON_SIZE};
   height: ${ICON_SIZE};
   background-size: contain;
@@ -75,43 +75,43 @@ const Total = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export default function Basket() {
+
+const Message = styled.p``;
+function Basket({ products, totalPrice, addToChart, removeFromChart }) {
+  console.log(products);
+  if (products.length === 0) {
+    return (
+      <Container>
+        <Message>Please add product to chart.</Message>
+      </Container>
+    );
+  }
   return (
     <Container>
-      <CheckoutItem>
-        <ItemInfo>
-          <span>Example Product</span>
-          <span>₺14.93</span>
-        </ItemInfo>
-        <CountContainer>
-          <CountChanger type="decrement" />
-          <Count>3</Count>
-          <CountChanger type="increment" />
-        </CountContainer>
-      </CheckoutItem>
-      <CheckoutItem>
-        <ItemInfo>
-          <span>Example Product</span>
-          <span>₺14.93</span>
-        </ItemInfo>
-        <CountContainer>
-          <CountChanger type="decrement" />
-          <Count>3</Count>
-          <CountChanger type="increment" />
-        </CountContainer>
-      </CheckoutItem>
-      <CheckoutItem>
-        <ItemInfo>
-          <span>Example Product</span>
-          <span>₺14.93</span>
-        </ItemInfo>
-        <CountContainer>
-          <CountChanger type="decrement" />
-          <Count>3</Count>
-          <CountChanger type="increment" />
-        </CountContainer>
-      </CheckoutItem>
-      <Total>₺39,97</Total>
+      {products.map((p) => {
+        return (
+          <CheckoutItem>
+            <ItemInfo>
+              <span>{p.name}</span>
+              <span>₺ {p.price}</span>
+            </ItemInfo>
+            <CountContainer>
+              <CountChanger
+                type="decrement"
+                onClick={() => removeFromChart(p.slug)}
+              />
+              <Count>{p.count}</Count>
+              <CountChanger
+                type="increment"
+                onClick={() => addToChart(p.slug)}
+              />
+            </CountContainer>
+          </CheckoutItem>
+        );
+      })}
+      {totalPrice > 0 ? <Total>₺ {totalPrice}</Total> : null}
     </Container>
   );
 }
+
+export default connect(Basket);

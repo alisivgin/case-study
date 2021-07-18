@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import FilterSort from "./components/FilterSort";
 import Header from "./components/Header";
-import Checkout from "./components/Checkout";
+import Chart from "./components/Chart";
 import Products from "./components/Products";
 import { COLORS } from "./constants";
 import { useResponsive } from "./misc/hooks";
@@ -64,7 +64,7 @@ function App() {
             <Products />
           </>
         )}
-        {!isMobile ? <Checkout /> : null}
+        {!isMobile ? <Chart /> : null}
       </Body>
       <Footer>
         <a href="/#">©2021 Market</a> &middot;

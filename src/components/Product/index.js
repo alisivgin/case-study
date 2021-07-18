@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../Button";
 import { COLORS } from "../../constants";
+import { products as connect } from "../../containers";
 
 const Container = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ const Name = styled.p`
   padding: 0;
 `;
 
-export default function Product({ price, name }) {
+function Product({ slug, price, name, addToChart }) {
   return (
     <Container>
       <ImageContainer>
@@ -50,7 +51,7 @@ export default function Product({ price, name }) {
       </ImageContainer>
       <Price>₺ {price}</Price>
       <Name>{name}</Name>
-      <Button></Button>
+      <Button onClicked={() => addToChart(slug)}></Button>
     </Container>
   );
 }
@@ -58,3 +59,5 @@ export default function Product({ price, name }) {
 function ProductImage() {
   return <Image />;
 }
+
+export default connect(Product);

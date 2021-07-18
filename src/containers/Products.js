@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { addToChart } from "../store/actions";
 
 const sortOptions = {
   "price-low-to-high": (a, b) => a.price - b.price,
@@ -14,7 +15,7 @@ export function mapStateToProps({ products, filters, sort }) {
   };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { addToChart };
 
 export default connect(mapStateToProps, mapDispatchToProps);
 

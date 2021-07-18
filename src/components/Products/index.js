@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ProductTypes from "../ProductTypes";
-import Item from "../Product";
+import Product from "../Product";
 import { products as connect } from "../../containers";
 
 const ProductsContainer = styled.section`
@@ -42,7 +42,7 @@ function Products({ products }) {
       <ProductTypes />
       <Items>
         {products.map((p) => (
-          <Item {...p}></Item>
+          <Product {...p}></Product>
         ))}
       </Items>
     </ProductsContainer>

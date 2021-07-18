@@ -10,3 +10,6 @@ export const FAIL_GET_PRODUCTS = "FAIL_GET_PRODUCTS";
 
 export const APPLY_FILTER = "APPLY_FILTER";
 export const APPLY_SORT = "APPLY_SORT";
+
+export const ADD_TO_CHART = "ADD_TO_CHART";
+export const REMOVE_FROM_CHART = "REMOVE_FROM_CHART";
