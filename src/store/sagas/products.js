@@ -12,6 +12,7 @@ export function* getProducts() {
     const { data: products } = yield call(axios.get, "/items");
     yield put({ type: COMPLETE_GET_PRODUCTS, products });
   } catch (error) {
+    console.log(error);
     yield put({ type: FAIL_GET_PRODUCTS });
   }
 }

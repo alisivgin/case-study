@@ -1,6 +1,6 @@
 import { APPLY_SORT } from "../actions/actionTypes";
 
-const initState = "";
+const initState = "price-low-to-high";
 
 function subState(state = initState, action) {
   switch (action.type) {

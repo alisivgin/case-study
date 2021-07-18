@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ProductTypes from "../ProductTypes";
-import Item from "../Item";
+import Item from "../Product";
 import { products as connect } from "../../containers";
 
 const ProductsContainer = styled.section`
@@ -35,14 +35,14 @@ const ProductsTitle = styled.h4`
   font-weight: 300;
   font-size: 1.25em;
 `;
-function Products() {
+function Products({ products }) {
   return (
     <ProductsContainer>
       <ProductsTitle>Products</ProductsTitle>
       <ProductTypes />
       <Items>
-        {new Array(16).fill(0).map((_) => (
-          <Item></Item>
+        {products.map((p) => (
+          <Item {...p}></Item>
         ))}
       </Items>
     </ProductsContainer>

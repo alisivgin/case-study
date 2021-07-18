@@ -42,14 +42,14 @@ const Name = styled.p`
   padding: 0;
 `;
 
-export default function Item() {
+export default function Product({ price, name }) {
   return (
     <Container>
       <ImageContainer>
         <ProductImage />
       </ImageContainer>
-      <Price>₺ 13.36</Price>
-      <Name>Gorgeous Office Mug</Name>
+      <Price>₺ {price}</Price>
+      <Name>{name}</Name>
       <Button></Button>
     </Container>
   );
