@@ -68,6 +68,21 @@ const ProductsTitle = styled.h4`
   font-size: 1.25em;
 `;
 
+const Footer = styled.main`
+  width: 100%;
+  height: 8rem;
+  background-color: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 0.8rem;
+
+  a {
+    color: #1ea4ce;
+    text-decoration: none;
+  }
+`;
+
 function App() {
   const { isMobile } = useResponsive();
   return (
@@ -101,6 +116,10 @@ function App() {
         )}
         {!isMobile ? <Checkout /> : null}
       </Body>
+      <Footer>
+        <a href="/#">©2021 Market</a> &middot;
+        <a href="/#">Privacy Policy</a>
+      </Footer>
       {isMobile ? (
         <BottomSheet open={false}>
           {/* <MultipleSelect title="Tags" inputPlaceHolder="Select Tag" /> */}
