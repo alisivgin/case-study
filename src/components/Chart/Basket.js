@@ -13,6 +13,29 @@ const Container = styled.div`
   padding: 1.5rem;
   border: 6px solid #1ea4ce;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ProductsContainer = styled.div`
+  width: 100%;
+  height: 18rem;
+  overflow: auto;
+  /* padding: 1.5rem; */
+  ::-webkit-scrollbar {
+    width: 4px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: blue;
+    border-radius: 20px;
+    border: 3px solid #e0e0e0;
+  }
 `;
 
 const CheckoutItem = styled.div`
@@ -74,6 +97,7 @@ const Total = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: flex-start;
 `;
 
 const Message = styled.p``;
@@ -88,27 +112,29 @@ function Basket({ products, totalPrice, addToChart, removeFromChart }) {
   }
   return (
     <Container>
-      {products.map((p) => {
-        return (
-          <CheckoutItem>
-            <ItemInfo>
-              <span>{p.name}</span>
-              <span>₺ {p.price}</span>
-            </ItemInfo>
-            <CountContainer>
-              <CountChanger
-                type="decrement"
-                onClick={() => removeFromChart(p.slug)}
-              />
-              <Count>{p.count}</Count>
-              <CountChanger
-                type="increment"
-                onClick={() => addToChart(p.slug)}
-              />
-            </CountContainer>
-          </CheckoutItem>
-        );
-      })}
+      <ProductsContainer>
+        {products.map((p) => {
+          return (
+            <CheckoutItem>
+              <ItemInfo>
+                <span>{p.name}</span>
+                <span>₺ {p.price}</span>
+              </ItemInfo>
+              <CountContainer>
+                <CountChanger
+                  type="decrement"
+                  onClick={() => removeFromChart(p.slug)}
+                />
+                <Count>{p.count}</Count>
+                <CountChanger
+                  type="increment"
+                  onClick={() => addToChart(p.slug)}
+                />
+              </CountContainer>
+            </CheckoutItem>
+          );
+        })}
+      </ProductsContainer>
       {totalPrice > 0 ? <Total>₺ {totalPrice}</Total> : null}
     </Container>
   );
