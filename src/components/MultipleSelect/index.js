@@ -98,6 +98,7 @@ const Option = styled.li`
 
 const OptionCount = styled.span`
   color: #a8a8a8;
+  margin-left: 0.25rem;
 `;
 
 function MultipleSelect({ type, title, data, inputPlaceHolder }) {
