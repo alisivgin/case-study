@@ -40,3 +40,10 @@ export function closeBottomSheet() {
     type: ACTION.CLOSE_BOTTOM_SHEET,
   };
 }
+
+export function setActivePage(number) {
+  return {
+    type: ACTION.SET_ACTIVE_PAGE,
+    number,
+  };
+}
