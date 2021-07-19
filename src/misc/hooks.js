@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState, useEffect } from "react";
 export function useResponsive() {
-  const [_, setSize] = useState([0, 0]);
+  const [size, setSize] = useState([0, 0]);
+
   useLayoutEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);
@@ -13,6 +14,7 @@ export function useResponsive() {
     isMobile:
       media("(min-width: 320px) and (max-width: 480px)") ||
       media("(min-width: 480px) and (max-width: 1024px)"),
+    size,
   };
 }
 
