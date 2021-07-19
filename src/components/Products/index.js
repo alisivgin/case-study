@@ -43,9 +43,8 @@ const ProductsTitle = styled.h4`
   font-weight: 300;
   font-size: 1.25em;
 `;
-function Products({ products, lifecycle }) {
+function Products({ products, lifecycle, paginatedProducts }) {
   const { isMobile } = useResponsive();
-  // if (true) {
   if (lifecycle === LIFECYCLE.PENDING) {
     return (
       <ProductsContainer>
@@ -65,11 +64,11 @@ function Products({ products, lifecycle }) {
       {isMobile ? <FilterSort /> : null}
       <ProductTypes />
       <Items>
-        {products.map((p) => (
+        {paginatedProducts.map((p) => (
           <Product {...p}></Product>
         ))}
       </Items>
-      <Pagination />
+      <Pagination products={products} />
     </ProductsContainer>
   );
 }

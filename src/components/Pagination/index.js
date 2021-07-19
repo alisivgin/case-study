@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { arrowRight, arrowLeft } from "../../assets";
 import { pagination as connect } from "../../containers";
 import { useResponsive } from "../../misc/hooks";
+import { ONE_PAGE_ITEM_COUNT } from "../../constants";
 
 const Container = styled.div`
   display: flex;
@@ -58,16 +59,22 @@ const Navigator = styled.li`
         background-image: url(${arrowLeft});
         background-position: left;
   `}
+  ${({ disabled }) =>
+    disabled &&
+    `
+        opacity: 0.5
+  `}
 `;
 
 function Pagination({
-  pageCount,
+  products,
   activeNumber,
   leftCount = 5,
   rightCount = 5,
   setActivePage,
 }) {
   const { isMobile } = useResponsive();
+  const pageCount = Math.ceil(products.length / ONE_PAGE_ITEM_COUNT);
   if (isMobile) {
     leftCount = 3;
     rightCount = 3;
@@ -139,10 +146,20 @@ function Pagination({
       }
     }
   }
+  const leftDisabled = activeNumber === 1;
+  const rightDisabled = activeNumber === pageCount;
   return (
     <Container>
       <List>
-        <Navigator left>Prev</Navigator>
+        <Navigator
+          left
+          disabled={leftDisabled}
+          onClick={() =>
+            leftDisabled ? null : setActivePage(activeNumber - 1)
+          }
+        >
+          Prev
+        </Navigator>
         <PageNumber
           onClick={() => setActivePage(1)}
           active={activeNumber === 1}
@@ -156,7 +173,14 @@ function Pagination({
         >
           {pageCount}
         </PageNumber>
-        <Navigator>Next</Navigator>
+        <Navigator
+          disabled={rightDisabled}
+          onClick={() =>
+            rightDisabled ? null : setActivePage(activeNumber + 1)
+          }
+        >
+          Next
+        </Navigator>
       </List>
     </Container>
   );

@@ -17,8 +17,10 @@ export function mapStateToProps({ products, filters, sort, pagination }) {
     pagination.activeNumber * ONE_PAGE_ITEM_COUNT
   );
   return {
-    products: paginated,
+    products: sorted,
+    paginatedProducts: paginated,
     lifecycle: products.lifecycle,
+    activeNumber: pagination.activeNumber,
   };
 }
 
