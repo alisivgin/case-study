@@ -98,7 +98,6 @@ const Option = styled.li`
   `};
   }
   & {
-    /* line-height: 1.2rem; */
     display: flex;
     align-items: center;
     color: #525252;

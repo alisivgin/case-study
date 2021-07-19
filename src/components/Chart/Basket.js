@@ -26,7 +26,6 @@ const ProductsContainer = styled.div`
   width: 100%;
   height: 18rem;
   overflow: auto;
-  /* padding: 1.5rem; */
   ::-webkit-scrollbar {
     width: 4px;
     border-radius: 4px;
@@ -164,7 +163,7 @@ function Basket({ products, totalPrice, addToChart, removeFromChart }) {
         })}
       </ProductsContainer>
       {totalPrice > 0 ? (
-        <Total>₺ {totalPrice.toString().replace(".", ",")}</Total>
+        <Total>₺ {totalPrice.toFixed(2).toString().replace(".", ",")}</Total>
       ) : null}
     </Container>
   );

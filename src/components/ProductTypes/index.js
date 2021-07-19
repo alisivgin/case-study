@@ -12,7 +12,6 @@ const Container = styled.div`
 const Type = styled.div`
   width: 6rem;
   height: 2rem;
-  /* border: 2px solid black; */
   background-color: #f2f0fd;
   color: #1ea4ce;
   border-radius: 2px;

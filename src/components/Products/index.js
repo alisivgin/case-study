@@ -9,9 +9,7 @@ import { useResponsive } from "../../misc/hooks";
 import { LIFECYCLE } from "../../constants";
 import ContentLoader from "react-content-loader";
 
-const ProductsContainer = styled.section`
-  /* width: 100%; */
-`;
+const ProductsContainer = styled.section``;
 
 const Items = styled.div`
   grid-area: products;
@@ -28,15 +26,9 @@ const Items = styled.div`
   overflow: auto;
 
   @media (min-width: 320px) and (max-width: 480px) {
-    /* Styles */
     grid-template-columns: repeat(2, minmax(auto, 1fr));
     grid-template-rows: repeat(8, minmax(auto, 1fr));
   }
-
-  /* @media (min-width: 480px) and (max-width: 1024px) {
-    grid-template-columns: repeat(4, minmax(auto, 1fr));
-    grid-template-rows: repeat(4, minmax(auto, 1fr));
-  } */
 `;
 const ProductsTitle = styled.h4`
   color: #6f6f6f;
