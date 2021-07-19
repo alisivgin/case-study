@@ -29,6 +29,11 @@ const Input = styled.input`
   margin-bottom: 0.6rem;
   border: 2px solid #e0e0e0;
   border-radius: 2px;
+  ::placeholder {
+    font-size: 14px;
+    line-height: 24px;
+    color: #a8a8a8;
+  }
 `;
 
 const Options = styled.ul`

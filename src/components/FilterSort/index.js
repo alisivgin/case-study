@@ -23,7 +23,6 @@ const ContainerMobile = styled.div`
   span.item {
     width: 100%;
     height: 2rem;
-    /* background-color: #f2f0fd; */
     color: #1ea4ce;
     display: flex;
     align-items: center;
@@ -60,8 +59,8 @@ function FilterSort({ showBottomSheet, brandFilterCount, tagFilterCount }) {
   return (
     <Container>
       <MultipleSelect type="sorting" />
-      <MultipleSelect type="brands" />
-      <MultipleSelect type="tags" />
+      <MultipleSelect type="brands" inputPlaceHolder="Search Brand" />
+      <MultipleSelect type="tags" inputPlaceHolder="Search Tag" />
     </Container>
   );
 }
