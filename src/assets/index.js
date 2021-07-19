@@ -6,3 +6,5 @@ export { default as plus } from "./plus.svg";
 export { default as minus } from "./minus.svg";
 export { default as arrowRight } from "./arrowRight.svg";
 export { default as arrowLeft } from "./arrowLeft.svg";
+export { default as mug } from "./mug.jpeg";
+export { default as shirt } from "./shirt.jpeg";

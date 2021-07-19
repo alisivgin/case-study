@@ -129,7 +129,6 @@ const Message = styled.p`
   color: #1ea4ce;
 `;
 function Basket({ products, totalPrice, addToChart, removeFromChart }) {
-  console.log(totalPrice);
   if (products.length === 0) {
     return (
       <Container>

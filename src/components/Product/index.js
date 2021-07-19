@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "../Button";
 import { COLORS } from "../../constants";
 import { products as connect } from "../../containers";
+import { mug, shirt } from "../../assets";
 
 const Container = styled.div`
   display: flex;
@@ -24,6 +25,18 @@ const Image = styled.div`
   width: 6rem;
   height: 6rem;
   background-color: ${COLORS.imageBackground};
+  background-repeat: no-repeat;
+  background-size: contain;
+  ${({ type }) =>
+    type === "mug" &&
+    `
+    background-image: url(${mug});
+  `}
+  ${({ type }) =>
+    type === "shirt" &&
+    `
+    background-image: url(${shirt});
+  `}
 `;
 
 const Price = styled.h3`
@@ -45,11 +58,12 @@ const Name = styled.p`
   padding: 0;
 `;
 
-function Product({ slug, price, name, addToChart }) {
+function Product({ slug, price, name, addToChart, itemType }) {
+  console.log(itemType);
   return (
     <Container>
       <ImageContainer>
-        <ProductImage />
+        <ProductImage type={itemType} />
       </ImageContainer>
       <Price>₺ {price.toString().replace(".", ",")}</Price>
       <Name>{name}</Name>
@@ -58,8 +72,8 @@ function Product({ slug, price, name, addToChart }) {
   );
 }
 
-function ProductImage() {
-  return <Image />;
+function ProductImage({ type }) {
+  return <Image type={type} />;
 }
 
 export default connect(Product);
