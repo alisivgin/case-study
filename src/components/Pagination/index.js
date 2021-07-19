@@ -90,7 +90,7 @@ function Pagination({
     ) {
       if (activeNumber - 2 >= i) {
         if (!leftDot) {
-          numbers.push(<PageNumber>...</PageNumber>);
+          numbers.push(<PageNumber key={i}>...</PageNumber>);
           leftDot = true;
         }
       } else if (
@@ -100,6 +100,7 @@ function Pagination({
       ) {
         numbers.push(
           <PageNumber
+            key={i}
             onClick={() => setActivePage(i)}
             active={activeNumber === i}
           >
@@ -108,7 +109,7 @@ function Pagination({
         );
       } else {
         if (!rightDot) {
-          numbers.push(<PageNumber>...</PageNumber>);
+          numbers.push(<PageNumber key={i}>...</PageNumber>);
           rightDot = true;
         }
       }
@@ -116,6 +117,7 @@ function Pagination({
       if (i < leftCount + 1) {
         numbers.push(
           <PageNumber
+            key={i}
             onClick={() => setActivePage(i)}
             active={activeNumber === i}
           >
@@ -124,7 +126,7 @@ function Pagination({
         );
       } else {
         if (!centerDot) {
-          numbers.push(<PageNumber>...</PageNumber>);
+          numbers.push(<PageNumber key={i}>...</PageNumber>);
           centerDot = true;
         }
       }
@@ -132,6 +134,7 @@ function Pagination({
       if (i > pageCount - rightCount) {
         numbers.push(
           <PageNumber
+            key={i}
             onClick={() => setActivePage(i)}
             active={activeNumber === i}
           >
@@ -140,7 +143,7 @@ function Pagination({
         );
       } else {
         if (!centerDot) {
-          numbers.push(<PageNumber>...</PageNumber>);
+          numbers.push(<PageNumber key={i}>...</PageNumber>);
           centerDot = true;
         }
       }
@@ -161,6 +164,7 @@ function Pagination({
           Prev
         </Navigator>
         <PageNumber
+          key={1}
           onClick={() => setActivePage(1)}
           active={activeNumber === 1}
         >
@@ -168,6 +172,7 @@ function Pagination({
         </PageNumber>
         {numbers}
         <PageNumber
+          key={pageCount}
           onClick={() => setActivePage(pageCount)}
           active={activeNumber === pageCount}
         >

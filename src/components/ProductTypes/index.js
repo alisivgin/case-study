@@ -33,6 +33,7 @@ function ProductTypes({ productTypes, selected, applyFilter }) {
     <Container>
       {productTypes.map((pt) => (
         <Type
+          key={pt}
           onClick={() => applyFilter("productType", pt)}
           active={selected === pt}
         >

@@ -43,8 +43,8 @@ function Products({ products, lifecycle, paginatedProducts }) {
         <ProductsTitle>Products</ProductsTitle>
         <ProductTypeLoader />
         <Items>
-          {new Array(16).fill(0).map((_) => {
-            return <ProductLoader />;
+          {new Array(16).fill(0).map((_, index) => {
+            return <ProductLoader key={index} />;
           })}
         </Items>
       </ProductsContainer>
@@ -57,7 +57,7 @@ function Products({ products, lifecycle, paginatedProducts }) {
       <ProductTypes />
       <Items>
         {paginatedProducts.map((p) => (
-          <Product {...p}></Product>
+          <Product key={p.slug} {...p}></Product>
         ))}
       </Items>
       <Pagination products={products} />

@@ -59,7 +59,6 @@ const Name = styled.p`
 `;
 
 function Product({ slug, price, name, addToChart, itemType }) {
-  console.log(itemType);
   return (
     <Container>
       <ImageContainer>

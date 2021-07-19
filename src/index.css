@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 body {
   margin: 0;
   font-family: "Open Sans";
@@ -9,11 +9,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-@font-face {
-  font-family: "Open Sans";
-  src: url("https://fonts.googleapis.com/css?family=Open+Sans");
-  font-weight: normal;
-  font-style: normal;
 }

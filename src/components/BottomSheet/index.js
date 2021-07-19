@@ -22,13 +22,13 @@ function BottomSheet({ show, content, closeBottomSheet }) {
     case "tags":
     case "brands":
     case "sorting":
-      child.push(<MultipleSelect type={content} />);
+      child.push(<MultipleSelect key={content} type={content} />);
       break;
     case "chart":
-      child.push(<Chart />);
+      child.push(<Chart key={content} />);
       break;
   }
-  child.push(<Button onClicked={closeBottomSheet} text="Close" />);
+  child.push(<Button key="button" onClicked={closeBottomSheet} text="Close" />);
   return (
     <Sheet open={show}>
       <Container ref={ref}>{child}</Container>
