@@ -171,13 +171,15 @@ function Pagination({
           1
         </PageNumber>
         {numbers}
-        <PageNumber
-          key={pageCount}
-          onClick={() => setActivePage(pageCount)}
-          active={activeNumber === pageCount}
-        >
-          {pageCount}
-        </PageNumber>
+        {pageCount !== 1 ? (
+          <PageNumber
+            key={pageCount}
+            onClick={() => setActivePage(pageCount)}
+            active={activeNumber === pageCount}
+          >
+            {pageCount}
+          </PageNumber>
+        ) : null}
         <Navigator
           disabled={rightDisabled}
           onClick={() =>
