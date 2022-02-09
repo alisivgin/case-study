@@ -5,7 +5,7 @@ import {
   makeSelectProductTypesSelected,
 } from "./selectors";
 
-import { applyFilter } from "./actions";
+import { applyFilter } from "../../store/actions";
 
 import * as S from "./style";
 
