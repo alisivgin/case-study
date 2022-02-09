@@ -1,71 +1,56 @@
 import React from "react";
-import styled from "styled-components";
 import ProductTypes from "../ProductTypes";
 import Product from "../Product";
 import FilterSort from "../FilterSort";
 import Pagination from "../Pagination";
-import { products as connect } from "../../containers";
 import { useResponsive } from "../../misc/hooks";
 import { LIFECYCLE } from "../../constants";
 import ContentLoader from "react-content-loader";
+import { useSelector } from "react-redux";
 
-const ProductsContainer = styled.section``;
+import {
+  makeSelectProducts,
+  makeSelectProductsLifecycle,
+  makeSelectPaginatedProducts,
+} from "./selectors";
 
-const Items = styled.div`
-  grid-area: products;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: repeat(4, minmax(auto, 1fr));
-  grid-template-rows: repeat(4, minmax(auto, 1fr));
-  grid-gap: 0.5rem;
-  background-color: #fff;
-  padding: 0.6rem;
-  border-radius: 2px;
-  height: 63rem;
-  overflow: auto;
+import * as S from "./style";
 
-  @media (min-width: 320px) and (max-width: 480px) {
-    grid-template-columns: repeat(2, minmax(auto, 1fr));
-    grid-template-rows: repeat(8, minmax(auto, 1fr));
-  }
-`;
-const ProductsTitle = styled.h4`
-  color: #6f6f6f;
-  font-weight: 300;
-  font-size: 1.25em;
-`;
-function Products({ products, lifecycle, paginatedProducts }) {
+function Products() {
   const { isMobile } = useResponsive();
+  const products = useSelector(makeSelectProducts);
+  const lifecycle = useSelector(makeSelectProductsLifecycle);
+  const paginatedProducts = useSelector(makeSelectPaginatedProducts);
+
   if (lifecycle === LIFECYCLE.PENDING) {
     return (
-      <ProductsContainer>
-        <ProductsTitle>Products</ProductsTitle>
+      <S.ProductsContainer>
+        <S.ProductsTitle>Products</S.ProductsTitle>
         <ProductTypeLoader />
-        <Items>
+        <S.Items>
           {new Array(16).fill(0).map((_, index) => {
             return <ProductLoader key={index} />;
           })}
-        </Items>
-      </ProductsContainer>
+        </S.Items>
+      </S.ProductsContainer>
     );
   }
   return (
-    <ProductsContainer>
-      <ProductsTitle>Products</ProductsTitle>
+    <S.ProductsContainer>
+      <S.ProductsTitle>Products</S.ProductsTitle>
       {isMobile ? <FilterSort /> : null}
       <ProductTypes />
-      <Items>
+      <S.Items>
         {paginatedProducts.map((p) => (
           <Product key={p.slug} {...p}></Product>
         ))}
-      </Items>
+      </S.Items>
       <Pagination products={products} />
-    </ProductsContainer>
+    </S.ProductsContainer>
   );
 }
 
-export default connect(Products);
+export default Products;
 
 const ProductLoader = (props) => (
   <ContentLoader
