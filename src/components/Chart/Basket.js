@@ -12,7 +12,7 @@ function Basket() {
   if (products.length === 0) {
     return (
       <S.Container>
-        <S.Message>Please add a product to chart.</S.Message>
+        <S.Message>Please add a product to cart.</S.Message>
       </S.Container>
     );
   }

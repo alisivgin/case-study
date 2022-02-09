@@ -11,7 +11,9 @@ function Pagination({ products, leftCount = 5, rightCount = 5 }) {
   const dispatch = useDispatch();
   const { activeNumber } = useSelector(makeSelectPagination);
   const { isMobile } = useResponsive();
-  const pageCount = Math.ceil(products.length / ONE_PAGE_ITEM_COUNT);
+  const pageCount = Math.ceil(
+    Object.keys(products).length / ONE_PAGE_ITEM_COUNT
+  );
   if (isMobile) {
     leftCount = 3;
     rightCount = 3;
