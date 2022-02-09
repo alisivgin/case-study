@@ -6,4 +6,3 @@ export { default as basket } from "./Basket";
 export { default as header } from "./Header";
 export { default as bottomSheet } from "./BottomSheet";
 export { default as filterSort } from "./FilterSort";
-export { default as pagination } from "./Pagination";

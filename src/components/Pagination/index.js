@@ -1,78 +1,15 @@
 import React from "react";
-import styled from "styled-components";
-import { arrowRight, arrowLeft } from "../../assets";
-import { pagination as connect } from "../../containers";
 import { useResponsive } from "../../misc/hooks";
 import { ONE_PAGE_ITEM_COUNT } from "../../constants";
+import { useSelector, useDispatch } from "react-redux";
 
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const List = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding-left: 0;
-  width: min-content;
-`;
+import * as S from "./style";
+import { makeSelectPagination } from "./selectors";
+import { setActivePage } from "./actions";
 
-const PageNumber = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2.25rem;
-  border-radius: 2px;
-  color: #697488;
-  cursor: pointer;
-  &:hover {
-    color: #1ea4ce;
-  }
-  ${({ active }) =>
-    active &&
-    `
-        background-color: #1EA4CE;
-        color: #fff;
-  `}
-`;
-
-const Navigator = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 6rem;
-  height: 2.25rem;
-  color: #697488;
-  font-weight: 600;
-  font-size: 14px;
-  background-image: url(${arrowRight});
-  background-repeat: no-repeat;
-  background-size: 1rem;
-  background-position: right;
-  cursor: pointer;
-  ${({ left }) =>
-    left &&
-    `
-        background-image: url(${arrowLeft});
-        background-position: left;
-  `}
-  ${({ disabled }) =>
-    disabled &&
-    `
-        opacity: 0.5
-  `}
-`;
-
-function Pagination({
-  products,
-  activeNumber,
-  leftCount = 5,
-  rightCount = 5,
-  setActivePage,
-}) {
+function Pagination({ products, leftCount = 5, rightCount = 5 }) {
+  const dispatch = useDispatch();
+  const { activeNumber } = useSelector(makeSelectPagination);
   const { isMobile } = useResponsive();
   const pageCount = Math.ceil(products.length / ONE_PAGE_ITEM_COUNT);
   if (isMobile) {
@@ -90,7 +27,7 @@ function Pagination({
     ) {
       if (activeNumber - 2 >= i) {
         if (!leftDot) {
-          numbers.push(<PageNumber key={i}>...</PageNumber>);
+          numbers.push(<S.PageNumber key={i}>...</S.PageNumber>);
           leftDot = true;
         }
       } else if (
@@ -99,51 +36,51 @@ function Pagination({
         activeNumber + 1 === i
       ) {
         numbers.push(
-          <PageNumber
+          <S.PageNumber
             key={i}
-            onClick={() => setActivePage(i)}
+            onClick={() => dispatch(setActivePage(i))}
             active={activeNumber === i}
           >
             {i}
-          </PageNumber>
+          </S.PageNumber>
         );
       } else {
         if (!rightDot) {
-          numbers.push(<PageNumber key={i}>...</PageNumber>);
+          numbers.push(<S.PageNumber key={i}>...</S.PageNumber>);
           rightDot = true;
         }
       }
     } else if (activeNumber < leftCount) {
       if (i < leftCount + 1) {
         numbers.push(
-          <PageNumber
+          <S.PageNumber
             key={i}
-            onClick={() => setActivePage(i)}
+            onClick={() => dispatch(setActivePage(i))}
             active={activeNumber === i}
           >
             {i}
-          </PageNumber>
+          </S.PageNumber>
         );
       } else {
         if (!centerDot) {
-          numbers.push(<PageNumber key={i}>...</PageNumber>);
+          numbers.push(<S.PageNumber key={i}>...</S.PageNumber>);
           centerDot = true;
         }
       }
     } else if (activeNumber > pageCount - rightCount) {
       if (i > pageCount - rightCount) {
         numbers.push(
-          <PageNumber
+          <S.PageNumber
             key={i}
-            onClick={() => setActivePage(i)}
+            onClick={() => dispatch(setActivePage(i))}
             active={activeNumber === i}
           >
             {i}
-          </PageNumber>
+          </S.PageNumber>
         );
       } else {
         if (!centerDot) {
-          numbers.push(<PageNumber key={i}>...</PageNumber>);
+          numbers.push(<S.PageNumber key={i}>...</S.PageNumber>);
           centerDot = true;
         }
       }
@@ -152,45 +89,45 @@ function Pagination({
   const leftDisabled = activeNumber === 1;
   const rightDisabled = activeNumber === pageCount;
   return (
-    <Container>
-      <List>
-        <Navigator
+    <S.Container>
+      <S.List>
+        <S.Navigator
           left
           disabled={leftDisabled}
           onClick={() =>
-            leftDisabled ? null : setActivePage(activeNumber - 1)
+            leftDisabled ? null : dispatch(setActivePage(activeNumber - 1))
           }
         >
           Prev
-        </Navigator>
-        <PageNumber
+        </S.Navigator>
+        <S.PageNumber
           key={1}
-          onClick={() => setActivePage(1)}
+          onClick={() => dispatch(setActivePage(1))}
           active={activeNumber === 1}
         >
           1
-        </PageNumber>
+        </S.PageNumber>
         {numbers}
         {pageCount !== 1 ? (
-          <PageNumber
+          <S.PageNumber
             key={pageCount}
-            onClick={() => setActivePage(pageCount)}
+            onClick={() => dispatch(setActivePage(pageCount))}
             active={activeNumber === pageCount}
           >
             {pageCount}
-          </PageNumber>
+          </S.PageNumber>
         ) : null}
-        <Navigator
+        <S.Navigator
           disabled={rightDisabled}
           onClick={() =>
-            rightDisabled ? null : setActivePage(activeNumber + 1)
+            rightDisabled ? null : dispatch(setActivePage(activeNumber + 1))
           }
         >
           Next
-        </Navigator>
-      </List>
-    </Container>
+        </S.Navigator>
+      </S.List>
+    </S.Container>
   );
 }
 
-export default connect(Pagination);
+export default Pagination;
