@@ -1,68 +1,26 @@
 import React from "react";
-import styled from "styled-components";
-import { COLORS } from "../../constants";
-import { logoIcon, totalPriceIcon } from "../../assets";
-import { header as connect } from "../../containers";
+import { useSelector, useDispatch } from "react-redux";
 import { useResponsive } from "../../misc/hooks";
-const HEADER_HEIGHT = "3rem";
 
-const Container = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: ${HEADER_HEIGHT};
-  background-color: ${COLORS.headerBackground};
-  @media (min-width: 320px) and (max-width: 480px),
-    (min-width: 480px) and (max-width: 1024px) {
-    position: fixed;
-    width: 100%;
-  }
-`;
+import { showBottomSheet } from "../../store/actions";
+import { makeSelectTotalPrice } from "./selectors";
 
-const Logo = styled.div`
-  width: 10rem;
-  height: 2rem;
-  background-image: url(${logoIcon});
-  background-size: contain;
-  background-repeat: no-repeat;
-  align-self: center;
-  justify-self: center;
-`;
+import * as S from "./style";
 
-const TotalPrice = styled.div`
-  position: absolute;
-  right: 2rem;
-  display: flex;
-  width: 7rem;
-  height: ${HEADER_HEIGHT};
-  background-image: url(${totalPriceIcon});
-  background-size: 1rem;
-  background-position: 20%;
-  background-repeat: no-repeat;
-  background-color: ${COLORS.totalPriceBackground};
-  align-items: center;
-  justify-content: center;
-  color: ${COLORS.textColor};
-  font-size: 0.8em;
-`;
-
-const Text = styled.span`
-  margin-left: 2rem;
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 600;
-`;
-
-function Item({ totalPrice, showBottomSheet }) {
+function Item() {
+  const dispatch = useDispatch();
   const { isMobile } = useResponsive();
+  const totalPrice = useSelector(makeSelectTotalPrice);
   return (
-    <Container onClick={() => (isMobile ? showBottomSheet("chart") : null)}>
-      <Logo />
-      <TotalPrice>
-        <Text>₺ {totalPrice}</Text>
-      </TotalPrice>
-    </Container>
+    <S.Container
+      onClick={() => (isMobile ? dispatch(showBottomSheet("chart")) : null)}
+    >
+      <S.Logo />
+      <S.TotalPrice>
+        <S.Text>₺ {totalPrice}</S.Text>
+      </S.TotalPrice>
+    </S.Container>
   );
 }
 
-export default connect(Item);
+export default Item;
