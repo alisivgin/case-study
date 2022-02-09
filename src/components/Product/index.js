@@ -1,10 +1,13 @@
 import React from "react";
 import Button from "../Button";
-import { products as connect } from "../../containers";
+import { useDispatch } from "react-redux";
 
 import * as S from "./style";
 
-function Product({ slug, price, name, addToChart, itemType }) {
+import { addToChart } from "../../store/actions";
+
+function Product({ slug, price, name, itemType }) {
+  const dispatch = useDispatch();
   return (
     <S.Container>
       <S.ImageContainer>
@@ -12,7 +15,7 @@ function Product({ slug, price, name, addToChart, itemType }) {
       </S.ImageContainer>
       <S.Price>₺ {price.toString().replace(".", ",")}</S.Price>
       <S.Name>{name}</S.Name>
-      <Button onClicked={() => addToChart(slug)} text="Add"></Button>
+      <Button onClicked={() => dispatch(addToChart(slug))} text="Add"></Button>
     </S.Container>
   );
 }
@@ -21,4 +24,4 @@ function ProductImage({ type }) {
   return <S.Image type={type} />;
 }
 
-export default connect(Product);
+export default Product;

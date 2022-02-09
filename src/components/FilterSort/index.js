@@ -1,55 +1,47 @@
 import React from "react";
-import styled from "styled-components";
 import { useResponsive } from "../../misc/hooks";
-import { filterSort as connect } from "../../containers";
+import { useSelector, useDispatch } from "react-redux";
 
 import MultipleSelect from "../MultipleSelect";
 
-const Container = styled.div`
-  grid-area: filter-sort;
-  display: flex;
-  flex-direction: column;
-  grid-gap: 2rem;
-`;
+import { makeSelectFilters } from "./selectors";
 
-const ContainerMobile = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  height: 2rem;
-  border-radius: 2px;
-  background-color: #f2f0fd;
-  span.item {
-    width: 100%;
-    height: 2rem;
-    color: #1ea4ce;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-  }
-`;
+import { showBottomSheet } from "../../store/actions";
 
-function FilterSort({ showBottomSheet, brandFilterCount, tagFilterCount }) {
+import * as S from "./style";
+
+function FilterSort() {
   const { isMobile } = useResponsive();
+  const dispatch = useDispatch();
+  const { brands, tags } = useSelector(makeSelectFilters);
+  const brandFilterCount = brands.length;
+  const tagFilterCount = tags.length;
   let brandsText = "Brands";
   if (brandFilterCount > 0) brandsText += ` (${brandFilterCount})`;
   let TagsText = "Tags";
   if (tagFilterCount > 0) TagsText += ` (${tagFilterCount})`;
   function FilterSortMobile() {
     return (
-      <ContainerMobile>
-        <span onClick={() => showBottomSheet("sorting")} className="item">
+      <S.ContainerMobile>
+        <span
+          onClick={() => dispatch(showBottomSheet("sorting"))}
+          className="item"
+        >
           Sorting
         </span>
-        <span onClick={() => showBottomSheet("brands")} className="item">
+        <span
+          onClick={() => dispatch(showBottomSheet("brands"))}
+          className="item"
+        >
           {brandsText}
         </span>
-        <span onClick={() => showBottomSheet("tags")} className="item">
+        <span
+          onClick={() => dispatch(showBottomSheet("tags"))}
+          className="item"
+        >
           {TagsText}
         </span>
-      </ContainerMobile>
+      </S.ContainerMobile>
     );
   }
 
@@ -57,12 +49,12 @@ function FilterSort({ showBottomSheet, brandFilterCount, tagFilterCount }) {
     return <FilterSortMobile />;
   }
   return (
-    <Container>
+    <S.Container>
       <MultipleSelect type="sorting" />
       <MultipleSelect type="brands" inputPlaceHolder="Search Brand" />
       <MultipleSelect type="tags" inputPlaceHolder="Search Tag" />
-    </Container>
+    </S.Container>
   );
 }
 
-export default connect(FilterSort);
+export default FilterSort;

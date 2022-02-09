@@ -1,19 +1,19 @@
 import React, { useRef } from "react";
-import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import { BottomSheet as Sheet } from "react-spring-bottom-sheet";
-import { bottomSheet as connect } from "../../containers";
 import MultipleSelect from "../MultipleSelect";
 import Chart from "../Chart";
 import Button from "../Button";
 import { useOnClickOutside } from "../../misc/hooks";
 
-const Container = styled.div`
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 1rem;
-`;
+import { closeBottomSheet } from "../../store/actions";
+import { makeSelectBottomSheet } from "./selectors";
 
-function BottomSheet({ show, content, closeBottomSheet }) {
+import * as S from "./style";
+
+function BottomSheet() {
+  const dispatch = useDispatch();
+  const { show, content } = useSelector(makeSelectBottomSheet);
   const ref = useRef();
   useOnClickOutside(ref, closeBottomSheet);
   const child = [];
@@ -28,12 +28,18 @@ function BottomSheet({ show, content, closeBottomSheet }) {
       child.push(<Chart key={content} />);
       break;
   }
-  child.push(<Button key="button" onClicked={closeBottomSheet} text="Close" />);
+  child.push(
+    <Button
+      key="button"
+      onClicked={() => dispatch(closeBottomSheet)}
+      text="Close"
+    />
+  );
   return (
     <Sheet open={show}>
-      <Container ref={ref}>{child}</Container>
+      <S.Container ref={ref}>{child}</S.Container>
     </Sheet>
   );
 }
 
-export default connect(BottomSheet);
+export default BottomSheet;
